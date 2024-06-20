@@ -14,7 +14,7 @@ public class ProdutoController implements ProdutoRepository {
     @Override
     public void cadastrar(Bebidas bebidas) {
         listaBebidas.add(bebidas);
-        System.out.println("\nA Bebida de número: " + bebidas.getNumero() + " foi criada com sucesso!");
+        System.out.println("\nA Bebida com o ID: " + bebidas.getNumero() + " foi criada com sucesso!");
     }
 
     @Override
@@ -26,11 +26,11 @@ public class ProdutoController implements ProdutoRepository {
 
     @Override
     public void procurar(int numero) {
-        var conta = buscarNaCollection(numero);
-        if (conta != null) {
-            conta.visualizar();
+        var bebidas = buscarNaCollection(numero);
+        if (bebidas != null) {
+            bebidas.visualizar();
         }else
-            System.out.println("\nA Bebida número: " + numero + " não foi encontrada!");
+            System.out.println("\nA Bebida com o ID: " + numero + " não foi encontrada!");
     }
 
     @Override
@@ -39,27 +39,29 @@ public class ProdutoController implements ProdutoRepository {
 
         if (buscarConta != null){
            listaBebidas.set(listaBebidas.indexOf(buscarConta), bebidas);
-            System.out.println("\nA Bebida numero: " + bebidas.getNumero() + " foi atualizada com sucesso!");
+            System.out.println("\nA Bebida com o ID: " + bebidas.getNumero() + " foi atualizada com sucesso!");
         }else
-            System.out.println("\nA Bebida numero: " + bebidas.getNumero() + " não foi encontrada!");
+            System.out.println("\nA Bebida com o ID: " + bebidas.getNumero() + " não foi encontrada!");
     }
 
     @Override
     public void deletar(int numero) {
-        var conta = buscarNaCollection(numero);
+        var produto = buscarNaCollection(numero);
 
-        if (conta != null){
-            if (listaBebidas.remove(conta) == true) {
-                System.out.println("\nA Bebida numero: " + numero + " foi deletada com sucesso!");
+        if (produto != null){
+            if (listaBebidas.remove(produto) == true) {
+                System.out.println("\nA Bebida com o ID: " + numero + " foi deletada com sucesso!");
             }
         }else {
-            System.out.println("\nA Bebida numero: " + numero + "não foi encontrada!");
+            System.out.println("\nA Bebida com o ID: " + numero + "não foi encontrada!");
+        }
+    }
+    public int verificar(int numero){
+        for (numero : listaBebidas){
+
         }
     }
 
-    public int gerarNumero(){
-        return ++numero;
-    }
 
     public Bebidas buscarNaCollection(int numero){
         for (var conta : listaBebidas){

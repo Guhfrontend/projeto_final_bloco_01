@@ -24,6 +24,6 @@ public class Alcolicas extends Bebidas {
     @Override
     public void visualizar() {
         super.visualizar();
-        System.out.print("porcentagem de Álcool: " + this.porcAlc);
+        System.out.print("porcentagem de Álcool: " + this.porcAlc + "%\n");
     }
 }
