@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Menu {
+
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         Scanner scan = new Scanner(System.in);
@@ -53,11 +54,6 @@ public class Menu {
                     scan.skip("\\R?");
                     nome = scan.next();
 
-                    System.out.print("Digite o ID do produto: ");
-                    numero = scan.nextInt();
-                    //verifique se existe o ID na collection
-
-
                     System.out.print("Quantidade(ml): ");
                     quant = scan.nextFloat();
 
@@ -72,21 +68,16 @@ public class Menu {
                     if (tipo == 1){
                         System.out.println("Qual a porcentagem do alcool: ");
                         porcAlc = scan.nextFloat();
-                        bebida.cadastrar(new Alcolicas(nome,numero,quant,preco,porcAlc) {
+                        bebida.cadastrar(new Alcolicas(nome, bebida.gerarNumero(), quant,preco,porcAlc) {
                         });
                     }if (tipo == 2){
-                        bebida.cadastrar(new NaoAlcolicas(nome,numero,quant,preco));
+                        bebida.cadastrar(new NaoAlcolicas(nome, bebida.gerarNumero(), quant,preco));
                     }
                     break;
 
                 case 2 :
-                    if (bebida != null){
-                        System.out.println("Todos os itens cadastrados: ");
-                        bebida.listarTodas();
+                    bebida.listarTodas();
 
-                    }else {
-                        System.out.println("Sem estoque");
-                    }
                     break;
                 case 3 :
                     System.out.println("Qual id do produto: ");

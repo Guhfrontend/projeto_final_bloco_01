@@ -19,9 +19,15 @@ public class ProdutoController implements ProdutoRepository {
 
     @Override
     public void listarTodas() {
-        for (var Bebidas : listaBebidas){
-            Bebidas.visualizar();
+        if (listaBebidas.isEmpty()){
+            System.out.println("Sem estoque");
+        }else {
+            System.out.println("Todos os itens cadastrados: ");
+            for (var Bebidas : listaBebidas){
+                Bebidas.visualizar();
+            }
         }
+
     }
 
     @Override
@@ -56,13 +62,9 @@ public class ProdutoController implements ProdutoRepository {
             System.out.println("\nA Bebida com o ID: " + numero + " não foi encontrada!");
         }
     }
-
-    /*public int verificar(int numero){
-        var buscarProduto = buscarNaCollection(listaBebidas.indexOf(numero));
-
-        for (buscarProduto l : listaBebidas)
-    }*/
-
+    public int gerarNumero(){
+        return ++numero;
+    }
 
     public Bebidas buscarNaCollection(int numero){
         for (var bebida : listaBebidas){
