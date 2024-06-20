@@ -7,5 +7,5 @@ public interface ProdutoRepository {
     public void procurar();
     public void atualizar();
     public void deletar();
-    
+
 }
