@@ -1,6 +1,5 @@
 import ProdutoController.ProdutoController;
 import ProdutoModel.Alcolicas;
-import ProdutoModel.Bebidas;
 import ProdutoModel.NaoAlcolicas;
 
 import java.util.InputMismatchException;
@@ -20,6 +19,7 @@ public class Menu {
 
         while (true) {
             System.out.println("""
+                    
                     *****************************************************
 
                                 Adega do Gustavin
@@ -33,7 +33,7 @@ public class Menu {
                                 5 - Apagar Produto
                                 6 - Sair da adega do Gustavin
                                  """);
-            System.out.println("Digite uma ação: ");
+            System.out.print("Digite uma ação: ");
 
             try {
                 opcao = scan.nextInt();
@@ -43,7 +43,7 @@ public class Menu {
                 opcao = 0;
             }
             if (opcao == 6) {
-                System.out.println("\nAdega do Gustavin é boa dimai");
+                System.out.println("\nAdega do Gustavin é boa dimai !!!");
                 System.exit(0);
             }
             switch (opcao) {
@@ -53,9 +53,10 @@ public class Menu {
                     scan.skip("\\R?");
                     nome = scan.next();
 
-                        System.out.print("Digite o ID do produto: ");
-                        numero = scan.nextInt();
-                    
+                    System.out.print("Digite o ID do produto: ");
+                    numero = scan.nextInt();
+                    //verifique se existe o ID na collection
+
 
                     System.out.print("Quantidade(ml): ");
                     quant = scan.nextFloat();
@@ -79,10 +80,14 @@ public class Menu {
                     break;
 
                 case 2 :
-                    System.out.println("Todos os itens cadastrados: ");
-                    bebida.listarTodas();
-                    break;
+                    if (bebida != null){
+                        System.out.println("Todos os itens cadastrados: ");
+                        bebida.listarTodas();
 
+                    }else {
+                        System.out.println("Sem estoque");
+                    }
+                    break;
                 case 3 :
                     System.out.println("Qual id do produto: ");
                     numero = scan.nextInt();
@@ -97,34 +102,42 @@ public class Menu {
                     if (buscarProd != null){
                         numero = buscarProd.getNumero();
                         System.out.println("Digite o nome: ");
+                        scan.skip("\\R?");
                         nome = scan.nextLine();
-                        System.out.println("Quantidade: ");
+                        System.out.println("Quantidade(ml): ");
                         quant = scan.nextFloat();
                         System.out.println("Preço: ");
                         preco = scan.nextFloat();
 
+                        do {
+                            System.out.println("1- Bebida alcolica ou 2- não alcolica: ");
+                            tipo = scan.nextInt();
+                        } while (tipo < 1 || tipo > 2);
 
-                        if (numero == 1){
-                            System.out.println("Qual a nova porcentagem de alcool: ");
+                        if (tipo == 1){
+                            System.out.println("Qual a porcentagem de alcool: ");
                             porcAlc = scan.nextFloat();
                             bebida.atualizar(new Alcolicas(nome,numero,quant,preco,porcAlc));
-                            System.out.println("Atualizado");
 
                         }if (numero == 2){
                             bebida.atualizar(new NaoAlcolicas(nome,numero,quant,preco));
-                            System.out.println("Atualizado");
                         }
 
                     }else {
-                        System.out.println("A conta não foi encontrada!");
+                        System.out.println("O produto não foi encontrada!");
                     }
-
+                    break;
 
 
                 case 5:
                     System.out.println("Qual o id do produto: ");
+                    numero = scan.nextInt();
+                    bebida.deletar(numero);
+                    break;
 
-
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
 
             }
         }

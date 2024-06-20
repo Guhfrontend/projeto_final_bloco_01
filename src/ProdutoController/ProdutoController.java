@@ -35,10 +35,10 @@ public class ProdutoController implements ProdutoRepository {
 
     @Override
     public void atualizar(Bebidas bebidas) {
-        var buscarConta = buscarNaCollection(bebidas.getNumero());
+        var buscarprod = buscarNaCollection(bebidas.getNumero());
 
-        if (buscarConta != null){
-           listaBebidas.set(listaBebidas.indexOf(buscarConta), bebidas);
+        if (buscarprod != null){
+           listaBebidas.set(listaBebidas.indexOf(buscarprod), bebidas);
             System.out.println("\nA Bebida com o ID: " + bebidas.getNumero() + " foi atualizada com sucesso!");
         }else
             System.out.println("\nA Bebida com o ID: " + bebidas.getNumero() + " não foi encontrada!");
@@ -53,20 +53,21 @@ public class ProdutoController implements ProdutoRepository {
                 System.out.println("\nA Bebida com o ID: " + numero + " foi deletada com sucesso!");
             }
         }else {
-            System.out.println("\nA Bebida com o ID: " + numero + "não foi encontrada!");
+            System.out.println("\nA Bebida com o ID: " + numero + " não foi encontrada!");
         }
     }
-    public int verificar(int numero){
-        for (numero : listaBebidas){
 
-        }
-    }
+    /*public int verificar(int numero){
+        var buscarProduto = buscarNaCollection(listaBebidas.indexOf(numero));
+
+        for (buscarProduto l : listaBebidas)
+    }*/
 
 
     public Bebidas buscarNaCollection(int numero){
-        for (var conta : listaBebidas){
-            if (conta.getNumero() == numero){
-                return conta;
+        for (var bebida : listaBebidas){
+            if (bebida.getNumero() == numero){
+                return bebida;
             }
         }
         return null;

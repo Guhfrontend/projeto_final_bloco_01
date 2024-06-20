@@ -9,4 +9,9 @@ public class NaoAlcolicas extends Bebidas {
         super(nome, numero, quant, preco);
     }
 
+
+    public void visualizar() {
+        super.visualizar();
+        System.out.print("Sem alcool");
+    }
 }
