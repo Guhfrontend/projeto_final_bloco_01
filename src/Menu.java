@@ -1,17 +1,20 @@
+import ProdutoController.ProdutoController;
+import ProdutoModel.Bebidas;
+
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        Scanner scan = new Scanner(System.in);
 
         Integer opcao, tipo, numero;
         String nome;
         float quant, preco;
 
-
-        Locale.setDefault(Locale.US);
-        Scanner scan = new Scanner(System.in);
+        ProdutoController bebida = new ProdutoController();
 
         while (true) {
             System.out.println("""
@@ -47,10 +50,15 @@ public class Menu {
                     System.out.print("Digite o nome da bebida: ");
                     scan.skip("\\R?");
                     nome = scan.next();
+                    System.out.println("Quantidade: ");
+                    quant = scan.nextFloat();
                     do {
                         System.out.println("1- Bebida alcolica ou 2- não alcolica: ");
                         tipo = scan.nextInt();
                     } while (tipo < 1 || tipo > 2);
+                    if (tipo == 1){
+                        System.out.println("Qual a porcentagem do alcool: ");
+                    }
 
                 }
                 case 2 -> {
