@@ -1,4 +1,4 @@
 package ProdutoModel;
 
-public class Alcolicas {
+public class Alcolicas extends Bebidas {
 }
