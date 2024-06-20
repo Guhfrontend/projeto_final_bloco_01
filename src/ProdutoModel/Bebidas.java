@@ -48,13 +48,8 @@ public abstract class Bebidas {
         this.preco = preco;
     }
 
-    @Override
-    public String toString() {
-        return "Informações da bebida: \n" +
-                "nome: " + this.nome +
-                "\nID: " + this.numero +
-                "\nquantidade(ml): " + this.quant +
-                "\npreço: " + this.preco;
+    public void visualizar() {
+        System.out.println("Informações da bebida: \n" + "nome: " + this.nome + "\nID: " + this.numero + "\nquantidade(ml): " + this.quant + "\npreço: " + this.preco);
     }
 }
 
