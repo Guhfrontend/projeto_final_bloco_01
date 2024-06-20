@@ -13,6 +13,7 @@ public class Menu {
         Locale.setDefault(Locale.US);
         Scanner scan = new Scanner(System.in);
 
+        try {
         System.out.println("""
 *****************************************************
 
@@ -27,8 +28,7 @@ public class Menu {
             5 - Apagar Produto
             6 - Sair da adega do Gustavin
              """);
-
-        try {
+            System.out.println("Digite a ação: ");
             opcao = scan.nextInt();
         }catch(InputMismatchException e){
             System.out.println("\nDigite valores inteiros!");
